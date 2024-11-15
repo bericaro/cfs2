@@ -27,7 +27,7 @@ public class HomePage extends HttpServlet {
 		if("login".equals(action)) {
 			response.sendRedirect("login.html");	
 		}else if("signup".equals(action)) {
-			request.getRequestDispatcher("/cfs2/src/main/webapp/signup.html").forward(request, response);
+			request.getRequestDispatcher("signup.html").forward(request, response);
 		}
 
 		
