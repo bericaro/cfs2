@@ -42,7 +42,7 @@ public class SignUp extends HttpServlet {
 		} else {
 			log.debug("All fields completed");
 		}
-//		if(password.equals(repeatPassword)) {
+		if(password.equals(repeatPassword)) {
 
 		response.setContentType("text/plain");
 		response.setCharacterEncoding("utf-8");
@@ -58,9 +58,14 @@ public class SignUp extends HttpServlet {
 		HttpSession session = request.getSession();
 		session.setAttribute("username", user.toString());
 		request.getRequestDispatcher("welcome.jsp").forward(request, response);
-//		}else {
-//			throw new Illegal
-//		}
+		}else {
+            response.setContentType("text/html");
+            response.getWriter().println("<html><body>");
+            response.getWriter().println("<h3 style='color: red;'>Passwords do not match. Please try again.</h3>");
+            response.getWriter().println("<a href='signup.html'>Go back to Sign Up</a>");
+            response.getWriter().println("</body></html>");
+			
+		}
 
 	}
 

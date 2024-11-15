@@ -16,15 +16,15 @@
         <form action="signup" method="post">
 
             <div class="mb-3">
-                <label for="nome" class="form-label" >Nome</label>
-                <input type="text" class="form-control" name = "name" id="nome" placeholder="Inserisci il tuo nome" required>
+                <label for="nome" class="form-label">Nome</label>
+                <input type="text" class="form-control" id="nome" name="name" placeholder="Inserisci il tuo nome" required>
             </div>
             <div class="mb-3">
-                <label for="cognome" class="form-label" >Cognome</label>
-                <input type="text" class="form-control" name="surname" id="cognome" placeholder="Inserisci il tuo cognome" required>
+                <label for="cognome" class="form-label">Cognome</label>
+                <input type="text" class="form-control" id="cognome" name="surname" placeholder="Inserisci il tuo cognome" required>
             </div>
             <div class="mb-3">
-                <label class="form-label" name="day">Data di nascita</label>
+                <label class="form-label">Data di nascita</label>
                 <div class="d-flex gap-2">
                     <select class="form-select" required>
                         <option value="">Giorno</option>
@@ -62,7 +62,7 @@
                     </select>
                     </select>
                     <select class="form-select" required>
-                        <option value="mese" name="month">Mese</option>
+                        <option value="mese">Mese</option>
         
                         <option value="1">Gennaio</option>
                         <option value="2">Febbraio</option>
@@ -79,7 +79,7 @@
                        
                     </select>
                     <select class="form-select" required>
-                        <option value="" name="year">Anno</option>
+                        <option value="">Anno</option>
                         <option value="1945">1945</option>
                         <option value="1946">1946</option>
                         <option value="1947">1947</option>
@@ -164,15 +164,15 @@
             </div>
             <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" name="email" id="email" placeholder="Inserisci la tua email" required>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Inserisci la tua email" required>
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" name="password" id="password" placeholder="Inserisci la tua password" required>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Inserisci la tua password" required>
             </div>
             <div class="mb-3">
-                <label for="repeat-password" class="form-label" >Ripeti la password</label>
-                <input type="password" class="form-control" name="repeatPassword" id="repeat-password" placeholder="Ripeti la tua password" required>
+                <label for="repeat-password" class="form-label">Ripeti la password</label>
+                <input type="password" class="form-control" id="repeat-password" name="repeatpassword" placeholder="Ripeti la tua password" required>
             </div>
             <div class="form-check mb-3">
                 <input type="checkbox" class="form-check-input" id="ricordami">
