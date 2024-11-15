@@ -20,7 +20,7 @@ public class SignUp extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.getRequestDispatcher("/signup.html").forward(request, response);
+		request.getRequestDispatcher("signup.html").forward(request, response);
 //		String name = request.getParameter("email");
 //		String password = request.getParameter("password");
 //		log.debug("Name: {}, password: {}", name, password);
