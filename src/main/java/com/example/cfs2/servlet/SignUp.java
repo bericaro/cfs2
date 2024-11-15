@@ -21,32 +21,47 @@ public class SignUp extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.getRequestDispatcher("signup.html").forward(request, response);
-//		String name = request.getParameter("email");
-//		String password = request.getParameter("password");
-//		log.debug("Name: {}, password: {}", name, password);
-//        if (name == null || password ==null) {
-//            log.info("Parameter user is null!");
-//            name = "";
-//        } else {
-//            log.debug("Parameter user is '{}'", name);
-//        }
-//
-//		response.setContentType("text/plain");
-//		response.setCharacterEncoding("utf-8");
-//		StringBuilder user = new StringBuilder();
-//		for (int i = 0; i<name.length(); i++) {
-//			if(name.charAt(i)!= '@') {
-//				user.append(name.charAt(i));
-//			}else {
-//				break;
-//			}
-//		}
-//		HttpSession session = request.getSession();
-//		session.setAttribute("username", user.toString());
-//		request.getRequestDispatcher("welcome.jsp").forward(request, response);
-//		
-//		
-				
+	}
 
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String firstName = request.getParameter("name");
+		String surname = request.getParameter("surname");
+		String email = request.getParameter("email");
+		String password = request.getParameter("password");
+		String repeatPassword = request.getParameter("repeatpassword");
+		String day = request.getParameter("day");
+		String month = request.getParameter("month");
+		String year = request.getParameter("year");
+
+		log.debug("Name: {}, surname: {}, email: {}, password: {} , day: {}, month: {}, year: {}", firstName, surname,
+				email, password, day, month, year);
+		if (firstName == null || email == null || password == null) {
+			log.info("One or more parameters are null!");
+		} else {
+			log.debug("All fields completed");
 		}
+//		if(password.equals(repeatPassword)) {
+
+		response.setContentType("text/plain");
+		response.setCharacterEncoding("utf-8");
+		StringBuilder user = new StringBuilder();
+		for (int i = 0; i < email.length(); i++) {
+			if (email.charAt(i) != '@') {
+				user.append(email.charAt(i));
+			} else {
+				break;
+			}
+		}
+
+		HttpSession session = request.getSession();
+		session.setAttribute("username", user.toString());
+		request.getRequestDispatcher("welcome.jsp").forward(request, response);
+//		}else {
+//			throw new Illegal
+//		}
+
+	}
+
 }
