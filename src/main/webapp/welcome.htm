@@ -1,35 +1,22 @@
+<!DOCTYPE html>
 <html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Benvenuto</title>
-    <!-- Aggiungi il link a Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Aggiungi il link a jQuery (necessario per la funzionalità di fade) -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
 </head>
 <body>
 
-    <!-- Contenitore della pagina di benvenuto con Bootstrap -->
-    <div class="d-flex justify-content-center align-items-center vh-100 bg-primary text-white" id="welcome-container">
-        <div class="text-center">
-            <h1 class="display-3">Benvenuto a StoryFlow!</h1>
-            <p class="lead">Benvenuto nel tuo mondo di storie: 
-                <br> Scopri libri, manga, fumetti e serie tv che amerai</p>
+    <!-- Contenitore della pagina di benvenuto -->
+    <div class="d-flex justify-content-center align-items-center vh-100 bg-primary text-white">
+        <div class="text-center animate__animated animate__fadeOut" style="animation-duration: 5s;">
+            <h1 class="display-5">Benvenuto a StoryFlow!</h1>
+            <p class="lead">Scopri libri, manga, fumetti e serie tv che amerai.</p>
+        
         </div>
     </div>
-
-    <!-- Aggiungi il link a Bootstrap JS e il suo dipendente Popper.js -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Script per la dissolvenza -->
-    <script>
-        // Dopo 3 secondi, applica l'effetto di dissolvenza al contenitore
-        setTimeout(function() {
-            $('#welcome-container').fadeOut(2000);  // dissolve in 2 secondi
-        }, 3000); // Dopo 3 secondi
-    </script>
 
 </body>
 </html>
