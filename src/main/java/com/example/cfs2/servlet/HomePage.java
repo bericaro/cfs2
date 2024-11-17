@@ -18,25 +18,11 @@ import jakarta.servlet.http.HttpSession;
 @SuppressWarnings("serial")
 @WebServlet("/home")
 public class HomePage extends HttpServlet {
-	
-	@Override 
+
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.getRequestDispatcher("home.html").forward(request, response);
 	}
-	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		String action = request.getParameter("action");
-		response.setContentType("text/plain");
-		response.setCharacterEncoding("utf-8");
-		if("login".equals(action)) {
-			response.sendRedirect("login.html");	
-		}else if("signup".equals(action)) {
-			request.getRequestDispatcher("signup.html").forward(request, response);
-		}
 
-		
-
-	}
 }
