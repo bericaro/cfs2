@@ -11,7 +11,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-@WebFilter({"/home", "/profilo.jsp"})
+@WebFilter({"/home", "/profilo.jsp","/storico.jsp"})
 public class FilterCategories implements Filter{
 //Il filtro delle categorie sarà implementato per le jsp delle categorie
 //libri.jsp / manga.jsp /serieTv.jsp/ fumetti.jsp
