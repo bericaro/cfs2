@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>categoria</title>
+
 </head>
 <body>
 <h1>${categoria}</h1>

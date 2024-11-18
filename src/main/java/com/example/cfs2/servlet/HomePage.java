@@ -33,6 +33,7 @@ public class HomePage extends HttpServlet {
 			session.setAttribute("categoria",action);
 			request.getRequestDispatcher("category.jsp").forward(request, response);
 			
+			
 		}
 	}
 
