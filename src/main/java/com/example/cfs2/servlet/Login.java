@@ -7,6 +7,8 @@ import java.util.Arrays;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.example.cfs2.servlet.filter.User;
+
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -38,20 +40,22 @@ public class Login extends HttpServlet {
         } else {
             log.debug("Parameter user is '{}'", name);
         }
-
+        
+        if("user@gmail.com".equals(name) && "password".equals(password)) {
+        	User user = new User(name, password);
 		response.setContentType("text/plain");
 		response.setCharacterEncoding("utf-8");
-		StringBuilder user = new StringBuilder();
-		for (int i = 0; i<name.length(); i++) {
-			if(name.charAt(i)!= '@') {
-				user.append(name.charAt(i));
-			}else {
-				break;
-			}
-		}
 		HttpSession session = request.getSession();
-		session.setAttribute("username", user.toString());
+		session.setAttribute("user", user);
 		request.getRequestDispatcher("profilo.jsp").forward(request, response);
+        }else {
+            response.setContentType("text/html");
+            response.getWriter().println("<html><body>");
+            response.getWriter().println("<h3 style='color: red;'>Utente non trovato.</h3>");
+            response.getWriter().println("<a href='login.html'>Torna al login</a>");
+            response.getWriter().println("<a href='signup.html'>Nuovo utente? Registrati.</a>");
+            response.getWriter().println("</body></html>");
+        }
 		
 		
 				

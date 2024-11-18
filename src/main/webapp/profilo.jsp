@@ -37,7 +37,7 @@
                 <div class="rounded-circle overflow-hidden d-flex justify-content-center align-items-center mx-auto" style="width: 150px; height: 150px;">
                     <img src="https://www.avvenire.it/c/2020/PublishingImages/84ac49c61529468ea911ea24859551f3/Mukhtarova_67789044.jpg?width=1024" alt="Immagine Profilo" class="w-100 h-100" style="object-fit: cover;">
                 </div>
-                <h2 class="mt-3">${username}</h2>
+                <h2 class="mt-3">${user.email.substring(0, user.email.indexOf('@'))}</h2>
                 <p class="text-muted">descrizione</p>
             </div>
             
