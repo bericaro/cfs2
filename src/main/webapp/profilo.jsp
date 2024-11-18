@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -160,7 +161,7 @@
     </div>
     <nav class="navbar fixed-bottom bg-light border-top">
         <div class="container d-flex justify-content-around">
-            <a href="#" class="text-muted text-center">
+            <a href="home.html" class="text-muted text-center">
                 <i class="fas fa-home fa-2x"></i> <!-- Icona Home -->
                 <div>Home</div>
             </a>
@@ -168,7 +169,7 @@
                 <i class="fas fa-history fa-2x"></i> <!-- Icona Storico -->
                 <div>Storico</div>
             </a>
-            <a href="#" class="text-muted text-center">
+            <a href="profilo.jsp" class="text-muted text-center">
                 <i class="fas fa-user fa-2x"></i> <!-- Icona Profilo -->
                 <div>Profilo</div>
             </a>
