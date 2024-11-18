@@ -43,6 +43,18 @@ public class HomePage extends HttpServlet {
 			String libri = "Libri";
 			session.setAttribute("categoria", libri);
 			request.getRequestDispatcher("category.jsp").forward(request, response);
+		}else if (action.equals("serietv")) {
+			response.setContentType("text/plain");
+			response.setCharacterEncoding("utf-8");
+			String serieTv = "Serie TV";
+			session.setAttribute("categoria", serieTv);
+			request.getRequestDispatcher("category.jsp").forward(request, response);
+		}else if (action.equals("fumetti")) {
+			response.setContentType("text/plain");
+			response.setCharacterEncoding("utf-8");
+			String fumetti = "Fumetti";
+			session.setAttribute("categoria", fumetti);
+			request.getRequestDispatcher("category.jsp").forward(request, response);
 		}
 	}
 
