@@ -24,5 +24,16 @@ public class HomePage extends HttpServlet {
 			throws ServletException, IOException {
 		request.getRequestDispatcher("home.html").forward(request, response);
 	}
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String action = request.getParameter("action");
+		if(action.equals("manga")) {
+			HttpSession session=request.getSession();
+			session.setAttribute("categoria",action);
+			request.getRequestDispatcher("category.jsp").forward(request, response);
+			
+		}
+	}
 
 }
