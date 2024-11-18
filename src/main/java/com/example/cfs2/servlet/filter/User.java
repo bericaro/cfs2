@@ -5,6 +5,11 @@ import java.lang.reflect.Constructor;
 public class User {
 	private String email;
 	private String password;
+	
+	public User() {
+		this.email=email;
+		this.password=password;
+	}
 
 	public User(String email, String password) {
 		this.email = email;

@@ -5,6 +5,8 @@ import java.io.IOException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.example.cfs2.servlet.filter.User;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -42,29 +44,16 @@ public class SignUp extends HttpServlet {
 		} else {
 			log.debug("All fields completed");
 		}
-		if(password.equals(repeatPassword)) {
+		if (password.equals(repeatPassword)) {
 
-		response.setContentType("text/plain");
-		response.setCharacterEncoding("utf-8");
-		StringBuilder user = new StringBuilder();
-		for (int i = 0; i < email.length(); i++) {
-			if (email.charAt(i) != '@') {
-				user.append(email.charAt(i));
-			} else {
-				break;
-			}
-		}
-
-		HttpSession session = request.getSession();
-		session.setAttribute("username", user.toString());
-		request.getRequestDispatcher("profilo.jsp").forward(request, response);
-		}else {
-            response.setContentType("text/html");
-            response.getWriter().println("<html><body>");
-            response.getWriter().println("<h3 style='color: red;'>Passwords do not match. Please try again.</h3>");
-            response.getWriter().println("<a href='signup.html'>Go back to Sign Up</a>");
-            response.getWriter().println("</body></html>");
-			
+			response.setContentType("text/plain");
+			response.setCharacterEncoding("utf-8");
+			User user = new User();
+			user.setEmail(email);
+			user.setPassword(password);
+			HttpSession session = request.getSession();
+			session.setAttribute("user", user);
+			request.getRequestDispatcher("profilo.jsp").forward(request, response);
 		}
 
 	}
