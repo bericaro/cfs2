@@ -1,6 +1,8 @@
 package com.example.cfs2.servlet;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.Period;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -48,6 +50,9 @@ public class SignUp extends HttpServlet {
 
 			response.setContentType("text/plain");
 			response.setCharacterEncoding("utf-8");
+//			CALCOLO ETA' PER FILTRO
+//			LocalDate birth = LocalDate.of(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day));
+//			int age = Period.between(birth, LocalDate.now()).getYears();
 			User user = new User();
 			user.setEmail(email);
 			user.setPassword(password);
