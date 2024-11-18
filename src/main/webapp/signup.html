@@ -13,7 +13,7 @@
 <div class="container d-flex justify-content-center align-items-center vh-100">
     <div class="card p-4" style="max-width: 400px; width: 100%;">
         <h2 class="text-center mb-4">Sign Up</h2>
-        <form action="signup" method="post">
+        <form action="signup" method="post" id="signupForm">
 
             <div class="mb-3">
                 <label for="nome" class="form-label">Nome</label>
@@ -183,5 +183,19 @@
         </form>
     </div>
 </div>
+<script>
+    document.getElementById("signupForm").addEventListener("submit", function(event) {
+        var password = document.getElementById("password").value;
+        var repeatPassword = document.getElementById("repeat-password").value;
+       
+        if (password !== repeatPassword) {
+            event.preventDefault(); // Impedisce l'invio del modulo
+            alert("Le password non coincidono. Per favore, riprova.");
+        }
+    });
+</script>
 </body>
+<footer>
+   
+</footer>
 </html>
