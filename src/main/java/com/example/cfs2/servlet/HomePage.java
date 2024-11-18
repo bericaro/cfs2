@@ -24,16 +24,25 @@ public class HomePage extends HttpServlet {
 			throws ServletException, IOException {
 		request.getRequestDispatcher("home.html").forward(request, response);
 	}
+
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String action = request.getParameter("action");
-		if(action.equals("manga")) {
-			HttpSession session=request.getSession();
-			session.setAttribute("categoria",action);
+		HttpSession session = request.getSession();
+		if ("manga".equals(action)) {
+			response.setContentType("text/plain");
+			response.setCharacterEncoding("utf-8");
+			String manga = "Manga";
+//			request.setAttribute("categoria", manga);
+			session.setAttribute("categoria", manga);
 			request.getRequestDispatcher("category.jsp").forward(request, response);
-			
-			
+		} else if (action.equals("libri")) {
+			response.setContentType("text/plain");
+			response.setCharacterEncoding("utf-8");
+			String libri = "Libri";
+			session.setAttribute("categoria", libri);
+			request.getRequestDispatcher("category.jsp").forward(request, response);
 		}
 	}
 
