@@ -13,21 +13,32 @@
     <div class="container min-vh-100 d-flex flex-column justify-content-start align-items-center mb-5">
 
         
-        <header class="text-center mt-3 mb-4">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSD-41mzQSKxgFjq7qawCLiMIGvd8UIDRJkTA&s" alt="Logo" class="img-fluid" style="height: 50px;">
-            <h1 class="mt-2 mb-0">StoryFlow</h1>
-            <p class="mt-1 text-muted">Il tuo compagno per scoprire nuove storie e avventure</p>
-        </header>
-        <div class="d-flex justify-content-between align-items-center mb-4">
+        <body style="background: linear-gradient(to bottom, #ffffff, #5D8AA8); min-height: 100vh;">
+
+            <div class="container min-vh-100 d-flex flex-column justify-content-start align-items-center mb-5">
+                <!-- Header -->
+                <header class="text-center mt-3 mb-4 p-3 rounded bg-light shadow-sm">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSD-41mzQSKxgFjq7qawCLiMIGvd8UIDRJkTA&s" 
+                         alt="Logo" 
+                         class="img-fluid mb-3" 
+                         style="height: 50px;">
+                    <h1 class="mt-2 mb-1">
+                        StoryFlow
+                    </h1>
+                    <p class="mt-1 text-muted fst-italic">Il tuo compagno per scoprire nuove storie e avventure</p>
+                    <a href="https://www.tuosito.com" target="_blank">Link</a>
+                </header>
         
-            
-            <span class="fw-bold fs-1 text-success" style="font-family: 'Cursive', sans-serif;">LIBRI</span>
-        </div>
-        <div class="text-center mb-4">
-            <p><strong>Link per aprire la tua pagina web:</strong>
-                <a href="https://www.tuosito.com" target="_blank">Apri la tua pagina web</a>
-            </p>
-        </div>
+                <!-- Linea divisoria e titolo principale -->
+                <div class="d-flex justify-content-center align-items-center mb-4">
+                    <div class="w-25">
+                        <hr class="text-success" style="border-width: 2px;">
+                    </div>
+                    <span class="fw-bold display-4 text-success d-flex align-items-center">
+                        <span style="font-family: 'Georgia', serif; letter-spacing: 0.1em;">LIBRI</span>
+                        <i class="fas fa-book-open text-success me-2"></i>
+                    </span>
+                </div>
         <div class="position-absolute top-0 end-0 p-3 d-flex" style="flex-direction: row;">
             <!-- Bottone Login -->
             <a href="login.html" class="btn btn-outline-success me-2">Login</a>
@@ -37,21 +48,21 @@
 
     <!-- Contenitore principale -->
     <div class="container py-5">
-        <!-- Righe per allineare bottone e barra di ricerca -->
-        <div class="row mb-4 align-items-center">
-            <!-- Colonna per il bottone -->
-            <div class="col-auto">
-                <a href="#" class="btn btn-outline-success d-inline-flex align-items-center">
-                    <span class="me-2">&larr;</span> 
-                </a>
-            </div>
+        <!-- Bottone Indietro e Barra di Ricerca sulla stessa linea -->
+        <div class="d-flex align-items-center justify-content-between">
+            <!-- Bottone Indietro -->
+            <a href="#" class="btn btn-outline-success d-inline-flex align-items-center me-3">
+                <span class="me-2">&larr;</span>
+            </a>
     
-            <!-- Colonna per la barra di ricerca -->
-            <div class="col-6">
+            <!-- Barra di Ricerca -->
+            <div class="flex-grow-1 mx-3">
                 <input type="text" class="form-control" placeholder="Cerca nella libreria..." aria-label="Barra di ricerca">
             </div>
         </div>
     </div>
+    
+    
     
         
         
