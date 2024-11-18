@@ -59,7 +59,7 @@
 					<!-- Bottone Indietro e Barra di Ricerca sulla stessa linea -->
 					<div class="d-flex align-items-center justify-content-between">
 						<!-- Bottone Indietro -->
-						<a href="#"
+						<a href="home.html"
 							class="btn btn-outline-success d-inline-flex align-items-center me-3">
 							<span class="me-2">&larr;</span>
 						</a>
