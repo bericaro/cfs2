@@ -57,7 +57,7 @@ public class SignUp extends HttpServlet {
 
 		HttpSession session = request.getSession();
 		session.setAttribute("username", user.toString());
-		request.getRequestDispatcher("welcome.jsp").forward(request, response);
+		request.getRequestDispatcher("profilo.jsp").forward(request, response);
 		}else {
             response.setContentType("text/html");
             response.getWriter().println("<html><body>");
