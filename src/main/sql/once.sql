@@ -1,6 +1,6 @@
-drop user if exists storyflow1;
-drop schema if exists storyflow1;
+drop user if exists storyflow;
+drop schema if exists storyflow;
 
-create user storyflow1 identified by 'password';
-create schema storyflow1;
-grant all privileges on storyflow1.* to storyflow1;
+create user storyflow identified by 'password';
+create schema storyflow;
+grant all privileges on storyflow.* to storyflow;
