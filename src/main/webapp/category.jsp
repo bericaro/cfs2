@@ -74,142 +74,228 @@
 			<c:choose>
 
 				<c:when test="${categoria == 'Manga'}">
-					<p>Manga</p>
+					<!-- Griglia delle card -->
+					<c:forEach var="manga" items="${listaManga}">
+						<div class="container">
+							<div class="row">
+
+
+								<!-- Prima Card -->
+
+								<div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+									<div class="card h-100 border-0 shadow-sm" type="submit">
+										<img src="${manga.url}" class="card-img-top" alt="Immagine 2"
+											style="height: 250px; object-fit: cover;">
+										<div class="card-body p-2">
+											<div
+												class="d-flex justify-content-between align-items-center">
+
+
+
+												<h6 class="card-title mb-1">${manga.titolo}</h6>
+
+
+												<a href="#" class="text-dark" title="Salva"
+													onclick="toggleBookmark(this)"> <i
+													class="far fa-bookmark fa-lg" id="bookmarkIcon"></i> <!-- Icona vuota iniziale -->
+												</a>
+											</div>
+											<p class="card-text small text-success">${categoria}</p>
+											<div class="star-rating d-flex gap-1">
+												<i class="fas fa-star p-2 rounded-circle text-warning"></i>
+												<i class="fas fa-star p-2 rounded-circle text-warning"></i>
+												<i class="fas fa-star p-2 rounded-circle text-warning"></i>
+												<i class=></i> <i class="far fa-star p-2 rounded-circle"></i>
+											</div>
+										</div>
+									</div>
+								</div>
+					</c:forEach>
 				</c:when>
 				<c:when test="${categoria == 'Libri'}">
-
 					<!-- Griglia delle card -->
 					<c:forEach var="libro" items="${libri}">
 						<div class="container">
 							<div class="row">
 
-								<c:if test="${libro.titolo == 'Paradiso Perduto'}">
-									<!-- Prima Card -->
+								<!-- Prima Card -->
 
-									<div class="col-lg-3 col-md-4 col-sm-6 mb-3">
-										<div class="card h-100 border-0 shadow-sm" type="submit">
-											<img
-												src="https://movieplayer.net-cdn.it/images/2003/06/08/la-locandina-di-orgoglio-e-pregiudizio-16205.jpg"
-												class="card-img-top" alt="Immagine 2"
-												style="height: 250px; object-fit: cover;">
-											<div class="card-body p-2">
-												<div
-													class="d-flex justify-content-between align-items-center">
+								<div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+									<div class="card h-100 border-0 shadow-sm" type="submit">
+										<img src="${libro.url}" class="card-img-top" alt="Immagine 2"
+											style="height: 250px; object-fit: cover;">
+										<div class="card-body p-2">
+											<div
+												class="d-flex justify-content-between align-items-center">
 
 
-													<!-- Code for when the title is 'Pride and Prejudice' -->
-													<h6 class="card-title mb-1">${libro.titolo}</h6>
+
+												<h6 class="card-title mb-1">${libro.titolo}</h6>
 
 
-													<a href="#" class="text-dark" title="Salva"
-														onclick="toggleBookmark(this)"> <i
-														class="far fa-bookmark fa-lg" id="bookmarkIcon"></i> <!-- Icona vuota iniziale -->
-													</a>
-												</div>
-												<p class="card-text small text-success">Libro</p>
-												<div class="star-rating d-flex gap-1">
-													<i class="fas fa-star p-2 rounded-circle text-warning"></i>
-													<i class="fas fa-star p-2 rounded-circle text-warning"></i>
-													<i class="fas fa-star p-2 rounded-circle text-warning"></i>
-													<i class=></i> <i class="far fa-star p-2 rounded-circle"></i>
-												</div>
+												<a href="#" class="text-dark" title="Salva"
+													onclick="toggleBookmark(this)"> <i
+													class="far fa-bookmark fa-lg" id="bookmarkIcon"></i> <!-- Icona vuota iniziale -->
+												</a>
+											</div>
+											<p class="card-text small text-success">${categoria}</p>
+											<div class="star-rating d-flex gap-1">
+												<i class="fas fa-star p-2 rounded-circle text-warning"></i>
+												<i class="fas fa-star p-2 rounded-circle text-warning"></i>
+												<i class="fas fa-star p-2 rounded-circle text-warning"></i>
+												<i class=></i> <i class="far fa-star p-2 rounded-circle"></i>
 											</div>
 										</div>
 									</div>
-								</c:if>
-								<c:if test="${libro.titolo == 'I Terrestri'}">
-									<div class="col-lg-3 col-md-4 col-sm-6 mb-3">
-										<div class="card h-100 border-0 shadow-sm" type="submit">
-											<img
-												src="https://m.media-amazon.com/images/I/71QxecnTncL.jpg"
-												class="card-img-top" alt="Immagine 3"
-												style="height: 250px; object-fit: cover;">
-											<div class="card-body p-2">
-												<div
-													class="d-flex justify-content-between align-items-center">
-													<h6 class="card-title mb-1">${libro.titolo}</h6>
-													<a href="#" class="text-dark" title="Salva"
-														onclick="toggleBookmark(this)"> <i
-														class="far fa-bookmark fa-lg" id="bookmarkIcon"></i> <!-- Icona vuota iniziale -->
-													</a>
-												</div>
-												<p class="card-text small text-success">Libro</p>
-												<div class="star-rating d-flex gap-1">
-													<i class="fas fa-star p-2 rounded-circle text-warning"></i>
-													<i class="fas fa-star p-2 rounded-circle text-warning"></i>
-													<i class="far fa-star p-2 rounded-circle"></i> <i
-														class="far fa-star p-2 rounded-circle"></i> <i
-														class="far fa-star p-2 rounded-circle"></i>
-												</div>
-											</div>
-										</div>
-									</div>
-								</c:if>
-								<c:if test="${libro.titolo == \"L'avversario\"}">
-									<div class="col-lg-3 col-md-4 col-sm-6 mb-3">
-										<div class="card h-100 border-0 shadow-sm" type="submit">
-											<img
-												src="https://www.adelphi.it/spool/i__id8656_mw1000__1x.jpg"
-												class="card-img-top" alt="Immagine 4"
-												style="height: 250px; object-fit: cover;">
-											<div class="card-body p-2">
-												<div
-													class="d-flex justify-content-between align-items-center">
-													<h6 class="card-title mb-1">${libro.titolo}</h6>
-													<a href="#" class="text-dark" title="Salva"
-														onclick="toggleBookmark(this)"> <i
-														class="far fa-bookmark fa-lg" id="bookmarkIcon"></i> <!-- Icona vuota iniziale -->
-													</a>
-												</div>
-												<p class="card-text small text-success">Libro</p>
-												<div class="star-rating d-flex gap-1">
-													<i class="fas fa-star p-2 rounded-circle text-warning"></i>
-													<i class="fas fa-star p-2 rounded-circle text-warning"></i>
-													<i class="fas fa-star p-2 rounded-circle text-warning"></i>
-													<i class="fas fa-star p-2 rounded-circle text-warning"></i>
-													<i class="fas fa-star p-2 rounded-circle text-warning"></i>
-												</div>
-											</div>
-										</div>
-									</div>
-								</c:if>
-								<c:if test="${libro.titolo == 'American Psycho'}">
-									<div class="col-lg-3 col-md-4 col-sm-6 mb-3">
-										<div class="card h-100 border-0 shadow-sm" type="submit">
-											<img
-												src="https://www.ilpost.it/wp-content/uploads/2016/03/American-Psycho-5.jpg"
-												class="card-img-top" alt="Immagine 5"
-												style="height: 250px; object-fit: cover;">
-											<div class="card-body p-2">
-												<div
-													class="d-flex justify-content-between align-items-center">
-													<h6 class="card-title mb-1">${libro.titolo}</h6>
-													<a href="#" class="text-dark" title="Salva"
-														onclick="toggleBookmark(this)"> <i
-														class="far fa-bookmark fa-lg" id="bookmarkIcon"></i> <!-- Icona vuota iniziale -->
-													</a>
-												</div>
-												<p class="card-text small text-success">Libro</p>
-												<div class="star-rating d-flex gap-1">
-													<i class="fas fa-star p-2 rounded-circle text-warning"></i>
-													<i class="fas fa-star p-2 rounded-circle text-warning"></i>
-													<i class="fas fa-star p-2 rounded-circle text-warning"></i>
-													<i class="fas fa-star p-2 rounded-circle text-warning"></i>
-													<i class="far fa-star p-2 rounded-circle"></i>
-												</div>
-											</div>
-										</div>
-									</div>
-								</c:if>
+								</div>
+					</c:forEach>
+					<!--			<div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+						<div class="card h-100 border-0 shadow-sm" type="submit">
+							<img src="https://m.media-amazon.com/images/I/71QxecnTncL.jpg"
+								class="card-img-top" alt="Immagine 3"
+								style="height: 250px; object-fit: cover;">
+							<div class="card-body p-2">
+								<div class="d-flex justify-content-between align-items-center">
+									<h6 class="card-title mb-1">${libro.titolo}</h6>
+									<a href="#" class="text-dark" title="Salva"
+										onclick="toggleBookmark(this)"> <i
+										class="far fa-bookmark fa-lg" id="bookmarkIcon"></i> <!-- Icona vuota iniziale -->
+					<!--  							</a>
+								</div>
+								<p class="card-text small text-success">Libro</p>
+								<div class="star-rating d-flex gap-1">
+									<i class="fas fa-star p-2 rounded-circle text-warning"></i> <i
+										class="fas fa-star p-2 rounded-circle text-warning"></i> <i
+										class="far fa-star p-2 rounded-circle"></i> <i
+										class="far fa-star p-2 rounded-circle"></i> <i
+										class="far fa-star p-2 rounded-circle"></i>
+								</div>
 							</div>
 						</div>
-					</c:forEach>
+					</div>
+
+
+					<div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+						<div class="card h-100 border-0 shadow-sm" type="submit">
+							<img src="https://www.adelphi.it/spool/i__id8656_mw1000__1x.jpg"
+								class="card-img-top" alt="Immagine 4"
+								style="height: 250px; object-fit: cover;">
+							<div class="card-body p-2">
+								<div class="d-flex justify-content-between align-items-center">
+									<h6 class="card-title mb-1">${libro.titolo}</h6>
+									<a href="#" class="text-dark" title="Salva"
+										onclick="toggleBookmark(this)"> <i
+										class="far fa-bookmark fa-lg" id="bookmarkIcon"></i> <!-- Icona vuota iniziale -->
+					<!-- 				</a>
+								</div>
+								<p class="card-text small text-success">Libro</p>
+								<div class="star-rating d-flex gap-1">
+									<i class="fas fa-star p-2 rounded-circle text-warning"></i> <i
+										class="fas fa-star p-2 rounded-circle text-warning"></i> <i
+										class="fas fa-star p-2 rounded-circle text-warning"></i> <i
+										class="fas fa-star p-2 rounded-circle text-warning"></i> <i
+										class="fas fa-star p-2 rounded-circle text-warning"></i>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+						<div class="card h-100 border-0 shadow-sm" type="submit">
+							<img
+								src="https://www.ilpost.it/wp-content/uploads/2016/03/American-Psycho-5.jpg"
+								class="card-img-top" alt="Immagine 5"
+								style="height: 250px; object-fit: cover;">
+							<div class="card-body p-2">
+								<div class="d-flex justify-content-between align-items-center">
+									<h6 class="card-title mb-1">${libro.titolo}</h6>
+									<a href="#" class="text-dark" title="Salva"
+										onclick="toggleBookmark(this)"> <i
+										class="far fa-bookmark fa-lg" id="bookmarkIcon"></i> <!-- Icona vuota iniziale -->
+					<!--					</a>
+								</div>
+								<p class="card-text small text-success">Libro</p>
+								<div class="star-rating d-flex gap-1">
+									<i class="fas fa-star p-2 rounded-circle text-warning"></i> <i
+										class="fas fa-star p-2 rounded-circle text-warning"></i> <i
+										class="fas fa-star p-2 rounded-circle text-warning"></i> <i
+										class="fas fa-star p-2 rounded-circle text-warning"></i> <i
+										class="far fa-star p-2 rounded-circle"></i>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+		</div>
+	</div> -->
 				</c:when>
 				<c:when test="${categoria == 'Serie TV'}">
-					<p>Latest Entertainment Updates...</p>
+					<c:forEach var="serieTv" items="${listaSerieTv}">
+						<div class="container">
+							<div class="row">
+								<!-- Prima Card -->
+								<div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+									<div class="card h-100 border-0 shadow-sm" type="submit">
+										<img src="${serieTv.url}" class="card-img-top"
+											alt="Immagine 2" style="height: 250px; object-fit: cover;">
+										<div class="card-body p-2">
+											<div
+												class="d-flex justify-content-between align-items-center">
+												<h6 class="card-title mb-1">${serieTv.titolo}</h6>
+												<a href="#" class="text-dark" title="Salva"
+													onclick="toggleBookmark(this)"> <i
+													class="far fa-bookmark fa-lg" id="bookmarkIcon"></i> <!-- Icona vuota iniziale -->
+												</a>
+											</div>
+											<p class="card-text small text-success">${categoria}</p>
+											<div class="star-rating d-flex gap-1">
+												<i class="fas fa-star p-2 rounded-circle text-warning"></i>
+												<i class="fas fa-star p-2 rounded-circle text-warning"></i>
+												<i class="fas fa-star p-2 rounded-circle text-warning"></i>
+												<i class=></i> <i class="far fa-star p-2 rounded-circle"></i>
+											</div>
+										</div>
+									</div>
+								</div>
+					</c:forEach>
 				</c:when>
 				<c:when test="${categoria == 'Fumetti'}">
-					<p>Latest Entertainment Updates...</p>
+					<c:forEach var="fumetto" items="${fumetti}">
+						<div class="container">
+							<div class="row">
+
+
+								<!-- Prima Card -->
+
+								<div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+									<div class="card h-100 border-0 shadow-sm" type="submit">
+										<img src="${fumetto.url}" class="card-img-top"
+											alt="Immagine 2" style="height: 250px; object-fit: cover;">
+										<div class="card-body p-2">
+											<div
+												class="d-flex justify-content-between align-items-center">
+
+
+
+												<h6 class="card-title mb-1">${fumetto.titolo}</h6>
+
+
+												<a href="#" class="text-dark" title="Salva"
+													onclick="toggleBookmark(this)"> <i
+													class="far fa-bookmark fa-lg" id="bookmarkIcon"></i> <!-- Icona vuota iniziale -->
+												</a>
+											</div>
+											<p class="card-text small text-success">${categoria}</p>
+											<div class="star-rating d-flex gap-1">
+												<i class="fas fa-star p-2 rounded-circle text-warning"></i>
+												<i class="fas fa-star p-2 rounded-circle text-warning"></i>
+												<i class="fas fa-star p-2 rounded-circle text-warning"></i>
+												<i class=></i> <i class="far fa-star p-2 rounded-circle"></i>
+											</div>
+										</div>
+									</div>
+								</div>
+					</c:forEach>
 				</c:when>
 			</c:choose>
 </body>

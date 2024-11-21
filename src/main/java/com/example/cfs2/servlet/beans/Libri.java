@@ -1,13 +1,16 @@
 package com.example.cfs2.servlet.beans;
 
 public class Libri {
-String titolo;
+private String titolo;
+private String url;
 
 public Libri() {
 	this.titolo = titolo;
+	this.url=url;
 }
-public Libri(String titolo) {
+public Libri(String titolo, String url) {
 	this.titolo = titolo;
+	this.url = url;
 }
 
 public String getTitolo() {
@@ -16,4 +19,13 @@ public String getTitolo() {
 public void setTitolo(String titolo) {
 	this.titolo = titolo;
 }
+
+public String getUrl() {
+	return url;
+}
+public void setUrl(String url) {
+	this.url = url;
+}
+
+
 }

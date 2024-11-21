@@ -11,7 +11,10 @@ import javax.sql.DataSource;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.example.cfs2.servlet.beans.Fumetti;
 import com.example.cfs2.servlet.beans.Libri;
+import com.example.cfs2.servlet.beans.Manga;
+import com.example.cfs2.servlet.beans.SerieTv;
 import com.example.cfs2.servlet.dao.DaoConnection;
 
 import jakarta.annotation.Resource;
@@ -41,13 +44,18 @@ public class HomePage extends HttpServlet {
 		DaoConnection categorie = new DaoConnection();
 		categorie.setDs(ds);
 		List<Libri> libriList = new ArrayList<>();
+		List<Manga> mangaList = new ArrayList<>();
+		List<SerieTv> serieTvList = new ArrayList<>();
+		List<Fumetti> fumettiList = new ArrayList<>();
 		HttpSession session = request.getSession();
 		if ("manga".equals(action)) {
 			response.setContentType("text/plain");
 			response.setCharacterEncoding("utf-8");
 			String manga = "Manga";
+			mangaList = categorie.retrieveManga();
 //			request.setAttribute("categoria", manga);
 			session.setAttribute("categoria", manga);
+			session.setAttribute("listaManga", mangaList);
 			request.getRequestDispatcher("category.jsp").forward(request, response);
 		} else if (action.equals("libri")) {
 			response.setContentType("text/plain");
@@ -61,14 +69,17 @@ public class HomePage extends HttpServlet {
 			response.setContentType("text/plain");
 			response.setCharacterEncoding("utf-8");
 			String serieTv = "Serie TV";
+			serieTvList = categorie.retrieveSerieTv();
 			session.setAttribute("categoria", serieTv);
+			session.setAttribute("listaSerieTv", serieTvList);
 			request.getRequestDispatcher("category.jsp").forward(request, response);
 		}else if (action.equals("fumetti")) {
 			response.setContentType("text/plain");
 			response.setCharacterEncoding("utf-8");
 			String fumetti = "Fumetti";
+			fumettiList = categorie.retrieveFumetti();
 			session.setAttribute("categoria", fumetti);
-			
+			session.setAttribute("fumetti", fumettiList);
 			request.getRequestDispatcher("category.jsp").forward(request, response);
 		}
 	}

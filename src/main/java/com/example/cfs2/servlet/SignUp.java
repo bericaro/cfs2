@@ -10,7 +10,7 @@ import javax.sql.DataSource;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.example.cfs2.servlet.beans.User;
+import com.example.cfs2.servlet.beans.Utenti;
 import com.example.cfs2.servlet.dao.DaoConnection;
 
 import jakarta.annotation.Resource;
@@ -21,6 +21,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
@@ -48,7 +49,7 @@ public class SignUp extends HttpServlet {
 		String day = request.getParameter("day");
 		String month = request.getParameter("month");
 		String year = request.getParameter("year");
-
+		Date birth = new Date(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day));
 		log.debug("Name: {}, surname: {}, email: {}, password: {} , day: {}, month: {}, year: {}", firstName, surname,
 				email, password, day, month, year);
 		if (firstName == null || email == null || password == null) {
@@ -64,10 +65,10 @@ public class SignUp extends HttpServlet {
 //				CALCOLO ETA' PER FILTRO
 //			LocalDate birth = LocalDate.of(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day));
 //				int age = Period.between(birth, LocalDate.now()).getYears();
-			User user = new User();
+			Utenti user = new Utenti();
 			DaoConnection retrieveUser = new DaoConnection();
 			retrieveUser.setDs(ds);
-			user = retrieveUser.signUp(firstName, surname, email, password);
+			user = retrieveUser.signUp(firstName, surname, email, password, birth);
 //			user.setEmail(email);
 //			user.setPassword(password);
 //			user.setName(firstName);

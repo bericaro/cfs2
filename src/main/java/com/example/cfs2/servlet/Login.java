@@ -15,7 +15,7 @@ import javax.sql.DataSource;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.example.cfs2.servlet.beans.User;
+import com.example.cfs2.servlet.beans.Utenti;
 import com.example.cfs2.servlet.dao.DaoConnection;
 
 import jakarta.annotation.Resource;
@@ -52,12 +52,10 @@ public class Login extends HttpServlet {
 		} else {
 			log.debug("Parameter user is '{}'", name);
 		}
-		User user = new User(name, password);
+		Utenti user = new Utenti(name, password);
 		DaoConnection logIn = new DaoConnection();
 		logIn.setDs(ds);
-		List<User> users = new ArrayList<>();
-		users = logIn.logInUser(name, password);
-		if (users == null) {
+		if (!logIn.logInUser(user)) {
 			response.setContentType("text/html");
 			response.getWriter().println("<html><body>");
 			response.getWriter().println("<h3 style='color: red;'>Username o password errati. Prova di nuovo.</h3>");

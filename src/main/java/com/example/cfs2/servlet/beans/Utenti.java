@@ -1,23 +1,23 @@
 package com.example.cfs2.servlet.beans;
 
-import java.lang.reflect.Constructor;
+import java.sql.Date;
 import java.time.LocalDate;
 
 import jakarta.annotation.Resource;
 
-public class User {
+public class Utenti {
 	private String email;
 	private String password;
 	private String name;
 	private String surname;
-	private LocalDate birth;
+	private Date birth;
 	
-	public User() {
+	public Utenti() {
 		this.email=email;
 		this.password=password;
 	}
 
-	public User(String email, String password) {
+	public Utenti(String email, String password) {
 		this.email = email;
 		this.password = password;
 	}
@@ -51,11 +51,11 @@ public class User {
     	this.surname = surname;
     }
     
-    public LocalDate getBirth() {
+    public Date getBirth() {
     	return birth;
     }
     
-    public void setBirth(LocalDate birth) {
+    public void setBirth(Date birth) {
     	this.birth = birth;
     }
 
