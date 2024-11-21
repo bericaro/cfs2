@@ -175,12 +175,12 @@ create table manga(
 
 insert into manga (titolo, generi_id, url) values
 	('Bersek', 8, 'https://m.media-amazon.com/images/I/71lnvXSiITL.jpg'),
-    ('Slam Dunk', 1, 'https://img2.libreriauniversitaria.it/BIT/500/601/9788891296016.jpg'),
-    ('Green Blood', 7, 'https://img2.libreriauniversitaria.it/BIT/500/601/9788891296016.jpg'),
+    ('Slam Dunk', 1, 'https://encuadrocomics.cl/cdn/shop/files/Slam-Dunk-Edicion-deluxe-19.jpg?v=1710293192'),
+    ('Green Blood', 7, 'https://www.panini.it/media/catalog/product/M/G/MGBOM001ISBN_0.jpg'),
     ('Buonanotte, Punpun', 2, 'https://m.media-amazon.com/images/I/41jMFv+gsDL._AC_UF1000,1000_QL80_.jpg');
     
 commit;
-
+alter table manga 
     
     -- TABELLA DISEGNATORI
     

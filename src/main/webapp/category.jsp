@@ -75,9 +75,10 @@
 
 				<c:when test="${categoria == 'Manga'}">
 					<!-- Griglia delle card -->
-					<c:forEach var="manga" items="${listaManga}">
-						<div class="container">
-							<div class="row">
+					<div class="container">
+						<div class="row">
+							<c:forEach var="manga" items="${listaManga}">
+
 
 
 								<!-- Prima Card -->
@@ -110,13 +111,14 @@
 										</div>
 									</div>
 								</div>
-					</c:forEach>
+							</c:forEach>
 				</c:when>
 				<c:when test="${categoria == 'Libri'}">
 					<!-- Griglia delle card -->
-					<c:forEach var="libro" items="${libri}">
-						<div class="container">
-							<div class="row">
+					<div class="container">
+						<div class="row">
+							<c:forEach var="libro" items="${libri}">
+
 
 								<!-- Prima Card -->
 
@@ -148,8 +150,8 @@
 										</div>
 									</div>
 								</div>
-					</c:forEach>
-					<!--			<div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+							</c:forEach>
+							<!--			<div class="col-lg-3 col-md-4 col-sm-6 mb-3">
 						<div class="card h-100 border-0 shadow-sm" type="submit">
 							<img src="https://m.media-amazon.com/images/I/71QxecnTncL.jpg"
 								class="card-img-top" alt="Immagine 3"
@@ -160,7 +162,7 @@
 									<a href="#" class="text-dark" title="Salva"
 										onclick="toggleBookmark(this)"> <i
 										class="far fa-bookmark fa-lg" id="bookmarkIcon"></i> <!-- Icona vuota iniziale -->
-					<!--  							</a>
+							<!--  							</a>
 								</div>
 								<p class="card-text small text-success">Libro</p>
 								<div class="star-rating d-flex gap-1">
@@ -186,7 +188,7 @@
 									<a href="#" class="text-dark" title="Salva"
 										onclick="toggleBookmark(this)"> <i
 										class="far fa-bookmark fa-lg" id="bookmarkIcon"></i> <!-- Icona vuota iniziale -->
-					<!-- 				</a>
+							<!-- 				</a>
 								</div>
 								<p class="card-text small text-success">Libro</p>
 								<div class="star-rating d-flex gap-1">
@@ -212,7 +214,7 @@
 									<a href="#" class="text-dark" title="Salva"
 										onclick="toggleBookmark(this)"> <i
 										class="far fa-bookmark fa-lg" id="bookmarkIcon"></i> <!-- Icona vuota iniziale -->
-					<!--					</a>
+							<!--					</a>
 								</div>
 								<p class="card-text small text-success">Libro</p>
 								<div class="star-rating d-flex gap-1">
@@ -230,9 +232,10 @@
 	</div> -->
 				</c:when>
 				<c:when test="${categoria == 'Serie TV'}">
-					<c:forEach var="serieTv" items="${listaSerieTv}">
-						<div class="container">
-							<div class="row">
+					<div class="container">
+						<div class="row">
+							<c:forEach var="serieTv" items="${listaSerieTv}">
+
 								<!-- Prima Card -->
 								<div class="col-lg-3 col-md-4 col-sm-6 mb-3">
 									<div class="card h-100 border-0 shadow-sm" type="submit">
@@ -257,13 +260,13 @@
 										</div>
 									</div>
 								</div>
-					</c:forEach>
+							</c:forEach>
 				</c:when>
 				<c:when test="${categoria == 'Fumetti'}">
-					<c:forEach var="fumetto" items="${fumetti}">
-						<div class="container">
-							<div class="row">
+					<div class="container">
+						<div class="row">
 
+							<c:forEach var="fumetto" items="${fumetti}">
 
 								<!-- Prima Card -->
 
@@ -295,7 +298,7 @@
 										</div>
 									</div>
 								</div>
-					</c:forEach>
+							</c:forEach>
 				</c:when>
 			</c:choose>
 </body>
