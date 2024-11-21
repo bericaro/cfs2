@@ -140,7 +140,9 @@
 													class="far fa-bookmark fa-lg" id="bookmarkIcon"></i> <!-- Icona vuota iniziale -->
 												</a>
 											</div>
+
 											<p class="card-text small text-success">${categoria}</p>
+
 											<div class="star-rating d-flex gap-1">
 												<i class="fas fa-star p-2 rounded-circle text-warning"></i>
 												<i class="fas fa-star p-2 rounded-circle text-warning"></i>
@@ -251,6 +253,7 @@
 												</a>
 											</div>
 											<p class="card-text small text-success">${categoria}</p>
+
 											<div class="star-rating d-flex gap-1">
 												<i class="fas fa-star p-2 rounded-circle text-warning"></i>
 												<i class="fas fa-star p-2 rounded-circle text-warning"></i>

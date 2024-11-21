@@ -16,6 +16,7 @@ import javax.sql.DataSource;
 import com.example.cfs2.servlet.beans.Fumetti;
 import com.example.cfs2.servlet.beans.Libri;
 import com.example.cfs2.servlet.beans.Manga;
+import com.example.cfs2.servlet.beans.Scrittori;
 import com.example.cfs2.servlet.beans.SerieTv;
 import com.example.cfs2.servlet.beans.Utenti;
 
@@ -155,5 +156,29 @@ public class DaoConnection {
 			throw new IllegalStateException(ex);
 		}
 		return serieTvList;
+	}
+	
+	public List<Scrittori> retrieveScrittori() {
+
+		List<Scrittori> scrittori = new ArrayList<>();
+		try (Connection conn = ds.getConnection()) {
+			String query = """
+					SELECT s.nome, s.cognome, l.titolo FROM libri l JOIN scrittori s ON l.libri_id=s.libri_id """;
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			while (rs.next()) {
+				String nome = rs.getString(1);
+				String cognome = rs.getString(2);
+				String titolo = rs.getString(3);
+				Libri libro = new Libri();
+				libro.setTitolo(titolo);
+				Scrittori scrittore = new Scrittori(nome, cognome, libro);
+				scrittori.add(scrittore);
+			}
+
+		} catch (SQLException ex) {
+			throw new IllegalStateException(ex);
+		}
+		return scrittori;
 	}
 }

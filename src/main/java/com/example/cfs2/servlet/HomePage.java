@@ -14,6 +14,7 @@ import org.apache.logging.log4j.Logger;
 import com.example.cfs2.servlet.beans.Fumetti;
 import com.example.cfs2.servlet.beans.Libri;
 import com.example.cfs2.servlet.beans.Manga;
+import com.example.cfs2.servlet.beans.Scrittori;
 import com.example.cfs2.servlet.beans.SerieTv;
 import com.example.cfs2.servlet.dao.DaoConnection;
 
@@ -43,10 +44,13 @@ public class HomePage extends HttpServlet {
 		String action = request.getParameter("action");
 		DaoConnection categorie = new DaoConnection();
 		categorie.setDs(ds);
+		DaoConnection autori = new DaoConnection();
+		autori.setDs(ds);
 		List<Libri> libriList = new ArrayList<>();
 		List<Manga> mangaList = new ArrayList<>();
 		List<SerieTv> serieTvList = new ArrayList<>();
 		List<Fumetti> fumettiList = new ArrayList<>();
+		List<Scrittori> scrittori = new ArrayList<>();
 		HttpSession session = request.getSession();
 		if ("manga".equals(action)) {
 			response.setContentType("text/plain");
@@ -62,8 +66,10 @@ public class HomePage extends HttpServlet {
 			response.setCharacterEncoding("utf-8");
 			String libri = "Libri";
 			libriList = categorie.retrieveLibri();
+			scrittori = autori.retrieveScrittori();
 			session.setAttribute("categoria", libri);
 			session.setAttribute("libri", libriList);
+			session.setAttribute("scrittori", scrittori);
 			request.getRequestDispatcher("category.jsp").forward(request, response);
 		}else if (action.equals("serietv")) {
 			response.setContentType("text/plain");
