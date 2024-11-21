@@ -1,24 +1,34 @@
 package com.example.cfs2.servlet;
 
 import java.io.IOException;
+
 import java.time.LocalDate;
 import java.time.Period;
+
+import javax.sql.DataSource;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.example.cfs2.servlet.filter.User;
+import com.example.cfs2.servlet.beans.User;
+import com.example.cfs2.servlet.dao.DaoConnection;
 
+import jakarta.annotation.Resource;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 @SuppressWarnings("serial")
 @WebServlet("/signup")
 public class SignUp extends HttpServlet {
+	@Resource(name = "jdbc/storyflow")
+	private DataSource ds;
 	private static final Logger log = LogManager.getLogger(Login.class);
 
 	@Override
@@ -50,17 +60,35 @@ public class SignUp extends HttpServlet {
 
 			response.setContentType("text/plain");
 			response.setCharacterEncoding("utf-8");
-//			CALCOLO ETA' PER FILTRO
+
+//				CALCOLO ETA' PER FILTRO
 //			LocalDate birth = LocalDate.of(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day));
-//			int age = Period.between(birth, LocalDate.now()).getYears();
+//				int age = Period.between(birth, LocalDate.now()).getYears();
 			User user = new User();
-			user.setEmail(email);
-			user.setPassword(password);
+			DaoConnection retrieveUser = new DaoConnection();
+			retrieveUser.setDs(ds);
+			user = retrieveUser.signUp(firstName, surname, email, password);
+//			user.setEmail(email);
+//			user.setPassword(password);
+//			user.setName(firstName);
+//			user.setSurname(surname);
+//			user.setBirth(birth);
+//				String query = """
+//						INSERT INTO users (nome,cognome,email,password) VALUES(?,?,?,?)""";
+//				try (PreparedStatement stmt = conn.prepareStatement(query)) {
+//					stmt.setString(1, user.getName().toString());
+//					stmt.setString(2, user.getSurname().toString());
+//					stmt.setString(3, user.getEmail().toString());
+//					stmt.setString(4, user.getPassword().toString());
+//					int rs = stmt.executeUpdate();
+//					response.setContentType("text/plain");
+//					response.setCharacterEncoding("utf-8");
+
 			HttpSession session = request.getSession();
 			session.setAttribute("user", user);
 			request.getRequestDispatcher("profilo.jsp").forward(request, response);
+
 		}
 
 	}
-
 }

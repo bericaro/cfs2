@@ -2,13 +2,23 @@ package com.example.cfs2.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+
+import javax.sql.DataSource;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.example.cfs2.servlet.filter.User;
+import com.example.cfs2.servlet.beans.User;
+import com.example.cfs2.servlet.dao.DaoConnection;
 
+import jakarta.annotation.Resource;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -20,12 +30,14 @@ import jakarta.servlet.http.HttpSession;
 @SuppressWarnings("serial")
 @WebServlet("/login")
 public class Login extends HttpServlet {
+	@Resource(name = "jdbc/storyflow")
+	private DataSource ds;
 	private static final Logger log = LogManager.getLogger(Login.class);
-	
+
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-	request.getRequestDispatcher("login.html").forward(request, response);	
+		request.getRequestDispatcher("login.html").forward(request, response);
 	}
 
 	@Override
@@ -34,33 +46,31 @@ public class Login extends HttpServlet {
 		String name = request.getParameter("email");
 		String password = request.getParameter("password");
 		log.debug("Name: {}, password: {}", name, password);
-        if (name == null || password ==null) {
-            log.info("Parameter user is null!");
-            name = "";
-        } else {
-            log.debug("Parameter user is '{}'", name);
-        }
-        
-        if("user@gmail.com".equals(name) && "password".equals(password)) {
-        	User user = new User(name, password);
-		response.setContentType("text/plain");
-		response.setCharacterEncoding("utf-8");
-		HttpSession session = request.getSession();
-		session.setAttribute("user", user);
-		request.getRequestDispatcher("profilo.jsp").forward(request, response);
-        }else {
-            response.setContentType("text/html");
-            response.getWriter().println("<html><body>");
-            response.getWriter().println("<h3 style='color: red;'>Utente non trovato.</h3>");
-            response.getWriter().println("<a href='login.html'>Torna al login</a>");
-            response.getWriter().println("<a href='signup.html'>Nuovo utente? Registrati.</a>");
-            response.getWriter().println("</body></html>");
-        }
-		
-		
-				
-
+		if (name == null || password == null) {
+			log.info("Parameter user is null!");
+			name = "";
+		} else {
+			log.debug("Parameter user is '{}'", name);
+		}
+		User user = new User(name, password);
+		DaoConnection logIn = new DaoConnection();
+		logIn.setDs(ds);
+		List<User> users = new ArrayList<>();
+		users = logIn.logInUser(name, password);
+		if (users == null) {
+			response.setContentType("text/html");
+			response.getWriter().println("<html><body>");
+			response.getWriter().println("<h3 style='color: red;'>Username o password errati. Prova di nuovo.</h3>");
+			response.getWriter().println("<p><a href='signup.html'>Nuovo utente? Registrati</a></p>");
+			response.getWriter().println("<a href='login.html'>Torna al login</a>");
+			response.getWriter().println("</body></html>");
+		} else {
+			response.setContentType("text/plain");
+			response.setCharacterEncoding("utf-8");
+			HttpSession session = request.getSession();
+			session.setAttribute("user", user);
+			request.getRequestDispatcher("profilo.jsp").forward(request, response);
 		}
 
 	}
-
+}

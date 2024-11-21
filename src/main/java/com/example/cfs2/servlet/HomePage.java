@@ -2,10 +2,15 @@ package com.example.cfs2.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import com.example.cfs2.servlet.beans.Libri;
+import com.example.cfs2.servlet.dao.DaoConnection;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -29,6 +34,8 @@ public class HomePage extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String action = request.getParameter("action");
+		DaoConnection categorie = new DaoConnection();
+		List<Libri> libriList = new ArrayList<>();
 		HttpSession session = request.getSession();
 		if ("manga".equals(action)) {
 			response.setContentType("text/plain");
@@ -41,7 +48,9 @@ public class HomePage extends HttpServlet {
 			response.setContentType("text/plain");
 			response.setCharacterEncoding("utf-8");
 			String libri = "Libri";
+			libriList = categorie.retrieveLibri();
 			session.setAttribute("categoria", libri);
+			session.setAttribute("libri", libriList);
 			request.getRequestDispatcher("category.jsp").forward(request, response);
 		}else if (action.equals("serietv")) {
 			response.setContentType("text/plain");
@@ -54,6 +63,7 @@ public class HomePage extends HttpServlet {
 			response.setCharacterEncoding("utf-8");
 			String fumetti = "Fumetti";
 			session.setAttribute("categoria", fumetti);
+			
 			request.getRequestDispatcher("category.jsp").forward(request, response);
 		}
 	}
