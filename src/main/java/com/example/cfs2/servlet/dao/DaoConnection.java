@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,12 +61,12 @@ public class DaoConnection {
 				stmt.setString(1, user.getEmail());
 				stmt.setString(2, user.getPassword());
 				ResultSet rs = stmt.executeQuery();
-				if(rs.next()) {
+				if (rs.next()) {
 					users.add(user);
-				}else{
+				} else {
 					users = null;
 				}
-				
+
 			} catch (Exception e) {
 
 			}
@@ -74,26 +75,25 @@ public class DaoConnection {
 		}
 		return users;
 	}
+
 	public List<Libri> retrieveLibri() {
-		Libri libro = new Libri();
+		
 		List<Libri> libri = new ArrayList<>();
 		try (Connection conn = ds.getConnection()) {
 			String query = """
-					SELECT id FROM users WHERE email = ? AND  password =?""";
-			try (PreparedStatement stmt = conn.prepareStatement(query)) {
-				stmt.setString(1, libro.getTitolo());
-				ResultSet rs = stmt.executeQuery();
-				if(rs.next()) {
-					libri.add(libro);
-				}
-				
-			} catch (Exception e) {
-
+					SELECT titolo FROM libri """;
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			while (rs.next()) {
+				String titolo = rs.getString(1);
+				Libri libro = new Libri(titolo);
+				libri.add(libro);
 			}
+
 		} catch (SQLException ex) {
 			throw new IllegalStateException(ex);
 		}
 		return libri;
-	}	
-	
+	}
+
 }

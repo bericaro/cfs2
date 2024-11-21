@@ -6,6 +6,9 @@ String titolo;
 public Libri() {
 	this.titolo = titolo;
 }
+public Libri(String titolo) {
+	this.titolo = titolo;
+}
 
 public String getTitolo() {
 	return titolo;

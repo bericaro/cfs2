@@ -72,123 +72,138 @@
 				</div>
 			</div>
 			<c:choose>
+
 				<c:when test="${categoria == 'Manga'}">
 					<p>Manga</p>
 				</c:when>
 				<c:when test="${categoria == 'Libri'}">
+
 					<!-- Griglia delle card -->
-					<div class="container">
-						<div class="row">
-							<!-- Prima Card -->
+					<c:forEach var="libro" items="${libri}">
+						<div class="container">
+							<div class="row">
 
-							<div class="col-lg-3 col-md-4 col-sm-6 mb-3">
-								<div class="card h-100 border-0 shadow-sm" type="submit">
-									<img
-										src="https://movieplayer.net-cdn.it/images/2003/06/08/la-locandina-di-orgoglio-e-pregiudizio-16205.jpg"
-										class="card-img-top" alt="Immagine 2"
-										style="height: 250px; object-fit: cover;">
-									<div class="card-body p-2">
-										<div class="d-flex justify-content-between align-items-center">
-											<c:forEach var="libro" items="${libriList}">
-												<c:if test="${libri == 'Paradiso Perduto'}">
-											<h6 class="card-title mb-1">${libri == libriList.titolo}</h6>
-											<a href="#" class="text-dark" title="Salva"
-												onclick="toggleBookmark(this)"> <i
-												class="far fa-bookmark fa-lg" id="bookmarkIcon"></i> <!-- Icona vuota iniziale -->
-											</a>
-										</div>
-												</c:if>
-											</c:forEach>
+								<c:if test="${libro.titolo == 'Paradiso Perduto'}">
+									<!-- Prima Card -->
 
-										<p class="card-text small text-success">Libro</p>
-										<div class="star-rating d-flex gap-1">
-											<i class="fas fa-star p-2 rounded-circle text-warning"></i> <i
-												class="fas fa-star p-2 rounded-circle text-warning"></i> <i
-												class="fas fa-star p-2 rounded-circle text-warning"></i> <i
-												class=></i> <i class="far fa-star p-2 rounded-circle"></i>
+									<div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+										<div class="card h-100 border-0 shadow-sm" type="submit">
+											<img
+												src="https://movieplayer.net-cdn.it/images/2003/06/08/la-locandina-di-orgoglio-e-pregiudizio-16205.jpg"
+												class="card-img-top" alt="Immagine 2"
+												style="height: 250px; object-fit: cover;">
+											<div class="card-body p-2">
+												<div
+													class="d-flex justify-content-between align-items-center">
+
+
+													<!-- Code for when the title is 'Pride and Prejudice' -->
+													<h6 class="card-title mb-1">${libro.titolo}</h6>
+
+
+													<a href="#" class="text-dark" title="Salva"
+														onclick="toggleBookmark(this)"> <i
+														class="far fa-bookmark fa-lg" id="bookmarkIcon"></i> <!-- Icona vuota iniziale -->
+													</a>
+												</div>
+												<p class="card-text small text-success">Libro</p>
+												<div class="star-rating d-flex gap-1">
+													<i class="fas fa-star p-2 rounded-circle text-warning"></i>
+													<i class="fas fa-star p-2 rounded-circle text-warning"></i>
+													<i class="fas fa-star p-2 rounded-circle text-warning"></i>
+													<i class=></i> <i class="far fa-star p-2 rounded-circle"></i>
+												</div>
+											</div>
 										</div>
 									</div>
-								</div>
-							</div>
-
-							<div class="col-lg-3 col-md-4 col-sm-6 mb-3">
-								<div class="card h-100 border-0 shadow-sm" type="submit">
-									<img src="https://m.media-amazon.com/images/I/71QxecnTncL.jpg"
-										class="card-img-top" alt="Immagine 3"
-										style="height: 250px; object-fit: cover;">
-									<div class="card-body p-2">
-										<div class="d-flex justify-content-between align-items-center">
-											<h6 class="card-title mb-1">I Terrestri</h6>
-											<a href="#" class="text-dark" title="Salva"
-												onclick="toggleBookmark(this)"> <i
-												class="far fa-bookmark fa-lg" id="bookmarkIcon"></i> <!-- Icona vuota iniziale -->
-											</a>
-										</div>
-										<p class="card-text small text-success">Libro</p>
-										<div class="star-rating d-flex gap-1">
-											<i class="fas fa-star p-2 rounded-circle text-warning"></i> <i
-												class="fas fa-star p-2 rounded-circle text-warning"></i> <i
-												class="far fa-star p-2 rounded-circle"></i> <i
-												class="far fa-star p-2 rounded-circle"></i> <i
-												class="far fa-star p-2 rounded-circle"></i>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="col-lg-3 col-md-4 col-sm-6 mb-3">
-								<div class="card h-100 border-0 shadow-sm" type="submit">
-									<img
-										src="https://www.adelphi.it/spool/i__id8656_mw1000__1x.jpg"
-										class="card-img-top" alt="Immagine 4"
-										style="height: 250px; object-fit: cover;">
-									<div class="card-body p-2">
-										<div class="d-flex justify-content-between align-items-center">
-											<h6 class="card-title mb-1">L'avversario</h6>
-											<a href="#" class="text-dark" title="Salva"
-												onclick="toggleBookmark(this)"> <i
-												class="far fa-bookmark fa-lg" id="bookmarkIcon"></i> <!-- Icona vuota iniziale -->
-											</a>
-										</div>
-										<p class="card-text small text-success">Libro</p>
-										<div class="star-rating d-flex gap-1">
-											<i class="fas fa-star p-2 rounded-circle text-warning"></i> <i
-												class="fas fa-star p-2 rounded-circle text-warning"></i> <i
-												class="fas fa-star p-2 rounded-circle text-warning"></i> <i
-												class="fas fa-star p-2 rounded-circle text-warning"></i> <i
-												class="fas fa-star p-2 rounded-circle text-warning"></i>
+								</c:if>
+								<c:if test="${libro.titolo == 'I Terrestri'}">
+									<div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+										<div class="card h-100 border-0 shadow-sm" type="submit">
+											<img
+												src="https://m.media-amazon.com/images/I/71QxecnTncL.jpg"
+												class="card-img-top" alt="Immagine 3"
+												style="height: 250px; object-fit: cover;">
+											<div class="card-body p-2">
+												<div
+													class="d-flex justify-content-between align-items-center">
+													<h6 class="card-title mb-1">${libro.titolo}</h6>
+													<a href="#" class="text-dark" title="Salva"
+														onclick="toggleBookmark(this)"> <i
+														class="far fa-bookmark fa-lg" id="bookmarkIcon"></i> <!-- Icona vuota iniziale -->
+													</a>
+												</div>
+												<p class="card-text small text-success">Libro</p>
+												<div class="star-rating d-flex gap-1">
+													<i class="fas fa-star p-2 rounded-circle text-warning"></i>
+													<i class="fas fa-star p-2 rounded-circle text-warning"></i>
+													<i class="far fa-star p-2 rounded-circle"></i> <i
+														class="far fa-star p-2 rounded-circle"></i> <i
+														class="far fa-star p-2 rounded-circle"></i>
+												</div>
+											</div>
 										</div>
 									</div>
-								</div>
-							</div>
-
-							<div class="col-lg-3 col-md-4 col-sm-6 mb-3">
-								<div class="card h-100 border-0 shadow-sm" type="submit">
-									<img
-										src="https://m.media-amazon.com/images/I/61vqvF5OcXL._AC_UF1000,1000_QL80_.jpg"
-										class="card-img-top" alt="Immagine 5"
-										style="height: 250px; object-fit: cover;">
-									<div class="card-body p-2">
-										<div class="d-flex justify-content-between align-items-center">
-											<h6 class="card-title mb-1">L'ombra del vento</h6>
-											<a href="#" class="text-dark" title="Salva"
-												onclick="toggleBookmark(this)"> <i
-												class="far fa-bookmark fa-lg" id="bookmarkIcon"></i> <!-- Icona vuota iniziale -->
-											</a>
-										</div>
-										<p class="card-text small text-success">Libro</p>
-										<div class="star-rating d-flex gap-1">
-											<i class="fas fa-star p-2 rounded-circle text-warning"></i> <i
-												class="fas fa-star p-2 rounded-circle text-warning"></i> <i
-												class="fas fa-star p-2 rounded-circle text-warning"></i> <i
-												class="fas fa-star p-2 rounded-circle text-warning"></i> <i
-												class="far fa-star p-2 rounded-circle"></i>
+								</c:if>
+								<c:if test="${libro.titolo == \"L'avversario\"}">
+									<div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+										<div class="card h-100 border-0 shadow-sm" type="submit">
+											<img
+												src="https://www.adelphi.it/spool/i__id8656_mw1000__1x.jpg"
+												class="card-img-top" alt="Immagine 4"
+												style="height: 250px; object-fit: cover;">
+											<div class="card-body p-2">
+												<div
+													class="d-flex justify-content-between align-items-center">
+													<h6 class="card-title mb-1">${libro.titolo}</h6>
+													<a href="#" class="text-dark" title="Salva"
+														onclick="toggleBookmark(this)"> <i
+														class="far fa-bookmark fa-lg" id="bookmarkIcon"></i> <!-- Icona vuota iniziale -->
+													</a>
+												</div>
+												<p class="card-text small text-success">Libro</p>
+												<div class="star-rating d-flex gap-1">
+													<i class="fas fa-star p-2 rounded-circle text-warning"></i>
+													<i class="fas fa-star p-2 rounded-circle text-warning"></i>
+													<i class="fas fa-star p-2 rounded-circle text-warning"></i>
+													<i class="fas fa-star p-2 rounded-circle text-warning"></i>
+													<i class="fas fa-star p-2 rounded-circle text-warning"></i>
+												</div>
+											</div>
 										</div>
 									</div>
-								</div>
+								</c:if>
+								<c:if test="${libro.titolo == 'American Psycho'}">
+									<div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+										<div class="card h-100 border-0 shadow-sm" type="submit">
+											<img
+												src="https://www.ilpost.it/wp-content/uploads/2016/03/American-Psycho-5.jpg"
+												class="card-img-top" alt="Immagine 5"
+												style="height: 250px; object-fit: cover;">
+											<div class="card-body p-2">
+												<div
+													class="d-flex justify-content-between align-items-center">
+													<h6 class="card-title mb-1">${libro.titolo}</h6>
+													<a href="#" class="text-dark" title="Salva"
+														onclick="toggleBookmark(this)"> <i
+														class="far fa-bookmark fa-lg" id="bookmarkIcon"></i> <!-- Icona vuota iniziale -->
+													</a>
+												</div>
+												<p class="card-text small text-success">Libro</p>
+												<div class="star-rating d-flex gap-1">
+													<i class="fas fa-star p-2 rounded-circle text-warning"></i>
+													<i class="fas fa-star p-2 rounded-circle text-warning"></i>
+													<i class="fas fa-star p-2 rounded-circle text-warning"></i>
+													<i class="fas fa-star p-2 rounded-circle text-warning"></i>
+													<i class="far fa-star p-2 rounded-circle"></i>
+												</div>
+											</div>
+										</div>
+									</div>
+								</c:if>
 							</div>
 						</div>
-					</div>
+					</c:forEach>
 				</c:when>
 				<c:when test="${categoria == 'Serie TV'}">
 					<p>Latest Entertainment Updates...</p>

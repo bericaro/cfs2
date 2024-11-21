@@ -6,12 +6,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.sql.DataSource;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.example.cfs2.servlet.beans.Libri;
 import com.example.cfs2.servlet.dao.DaoConnection;
 
+import jakarta.annotation.Resource;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -23,7 +26,8 @@ import jakarta.servlet.http.HttpSession;
 @SuppressWarnings("serial")
 @WebServlet("/home")
 public class HomePage extends HttpServlet {
-
+	@Resource(name = "jdbc/storyflow")
+	private DataSource ds;
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -35,6 +39,7 @@ public class HomePage extends HttpServlet {
 			throws ServletException, IOException {
 		String action = request.getParameter("action");
 		DaoConnection categorie = new DaoConnection();
+		categorie.setDs(ds);
 		List<Libri> libriList = new ArrayList<>();
 		HttpSession session = request.getSession();
 		if ("manga".equals(action)) {
