@@ -77,16 +77,39 @@ insert into serietv (titolo, generi_id, url) values
     
 commit;
 
+ -- TABELLA SCRITTORI
+ 
+ create table scrittori(
+	scrittori_id integer primary key auto_increment,
+	nome varchar(50),
+    cognome varchar(50)
+);
+
+insert into scrittori(nome, cognome) values
+	('Ennio', 'Flaiano'),
+    ('Wu Ming', null),
+    ('Bret', 'Easton Ellis'),
+    ('John', 'Milton'),
+    ('Michele', 'Mari'),
+    ('Roberto', 'Bolano'),
+    ('David', 'Foster Wallace'),
+    ('Emmanuel', 'Carrere'),
+    ('Sayaka', 'Murata');
+    
+    commit;
+
 
 -- TABELLA LIBRI
 
 create table libri(
 	libri_id integer primary key auto_increment,
 	titolo varchar(40),
-    generi_id integer,
     url varchar(100),
+    scrittori_id integer,
+    generi_id integer,
     
-    foreign key (generi_id) references generi (generi_id)
+    foreign key (generi_id) references generi (generi_id),
+    foreign key (scrittori_id) references scrittori (scrittori_id)
 );
 
 -- FK
@@ -104,42 +127,19 @@ select generi_id into @biografico from generi where nome = 'Biografico';
 select generi_id into @fantascienza from generi where nome = 'Fantascienza';
 select generi_id into @romanzo from generi where nome = 'Romanzo';
 
-insert into libri (titolo, generi_id, url) values
-('Diario Notturno', @commedia, 'https://www.adelphi.it/spool/i__id11704_mw1000__1x.jpg'),
-('American Psycho', @thriller,'https://m.media-amazon.com/images/I/81jZ1EFsHhL.jpg'), 
-('Infinite Jest', @romanzo, 'https://m.media-amazon.com/images/I/41hug15aRJL._SY445_SX342_.jpg'), 
-('Cento Poesie d Amore a LadyHawke', @romantico, 'https://www.einaudi.it/content/uploads/2007/02/978880618112GRA.JPG'),
-('I Detective Selvaggi', @polizesco, 'https://www.adelphi.it/spool/i__id6809_mw1000__1x.jpg'), 
-('Paradiso Perduto', @romanzo, 'https://m.media-amazon.com/images/I/51Z0Cco7CmL._SY445_SX342_.jpg'), 
-('Manituana', @drama, 'https://m.media-amazon.com/images/I/71E-3iD-hUL._SY425_.jpg'),
-('I Terrestri', @fantascienza, 'https://m.media-amazon.com/images/I/71QxecnTncL.jpg'),
-("L'avversario", @romanzo, 'https://www.adelphi.it/spool/i__id8656_mw1000__1x.jpg');
+insert into libri (titolo, generi_id, url, scrittori_id) values
+('Diario Notturno', @commedia, 'https://www.adelphi.it/spool/i__id11704_mw1000__1x.jpg', 1),
+('American Psycho', @thriller,'https://m.media-amazon.com/images/I/81jZ1EFsHhL.jpg', 3), 
+('Infinite Jest', @romanzo, 'https://m.media-amazon.com/images/I/41hug15aRJL._SY445_SX342_.jpg', 7), 
+('Cento Poesie d Amore a LadyHawke', @romantico, 'https://www.einaudi.it/content/uploads/2007/02/978880618112GRA.JPG', 5),
+('I Detective Selvaggi', @polizesco, 'https://www.adelphi.it/spool/i__id6809_mw1000__1x.jpg', 6), 
+('Paradiso Perduto', @romanzo, 'https://m.media-amazon.com/images/I/51Z0Cco7CmL._SY445_SX342_.jpg', 4), 
+('Manituana', @drama, 'https://m.media-amazon.com/images/I/71E-3iD-hUL._SY425_.jpg', 2),
+('I Terrestri', @fantascienza, 'https://m.media-amazon.com/images/I/71QxecnTncL.jpg', 9),
+("L'avversario", @romanzo, 'https://www.adelphi.it/spool/i__id8656_mw1000__1x.jpg', 8);
 
 commit;
 
--- TABELLA SCRITTORI
-
-create table scrittori(
-	scrittori_id integer primary key auto_increment,
-	nome varchar(50),
-    cognome varchar(50),
-    libri_id integer,
-    
-	foreign key (libri_id) references libri (libri_id)
-);
-
-insert into scrittori(nome, cognome, libri_id) values
-	('Ennio', 'Flaiano', 1),
-    ('Wuming', null, 7),
-    ('Bret', 'Easton Ellis', 2),
-    ('John', 'Milton', 6),
-    ('Michele', 'Mari', 4),
-    ('Roberto', 'Bolano', 5),
-    ('David', 'Foster Wallace', 3),
-    ('Emmanuel', 'Carrere', 9),
-    ('Sayaka', 'Murata', 8);
-    
-    commit;
 
 
 -- TABELLA FUMETTI
