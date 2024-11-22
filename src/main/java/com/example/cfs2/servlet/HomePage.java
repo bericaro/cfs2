@@ -55,7 +55,6 @@ public class HomePage extends HttpServlet {
 			response.setCharacterEncoding("utf-8");
 			String manga = "Manga";
 			mangaList = categorie.retrieveManga();
-//			request.setAttribute("categoria", manga);
 			session.setAttribute("categoria", manga);
 			session.setAttribute("listaManga", mangaList);
 			request.getRequestDispatcher("category.jsp").forward(request, response);
