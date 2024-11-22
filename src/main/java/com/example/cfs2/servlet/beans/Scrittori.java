@@ -15,6 +15,12 @@ public Scrittori(String nome, String cognome, Libri libro) {
 	this.cognome = cognome;
 	this.libro=libro;
 }
+
+public Scrittori(String nome, String cognome) {
+	this.nome = nome;
+	this.cognome = cognome;
+}
+
 public String getNome() {
 	return nome;
 }
@@ -37,9 +43,10 @@ public void setLibro(Libri libro) {
 
 @Override
 public String toString() {
-    return "Scrittori{" +
-            "nome='" + nome + '\'' +
-            ", cognome='" + cognome + '\'' +
-            '}';
+	if(cognome == null) {
+		return nome;
+	}else {
+    return nome + " "+ cognome;
+	}
 }
 }

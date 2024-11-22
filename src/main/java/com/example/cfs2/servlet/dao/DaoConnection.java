@@ -13,9 +13,12 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import com.example.cfs2.servlet.beans.Disegnatori;
 import com.example.cfs2.servlet.beans.Fumetti;
+import com.example.cfs2.servlet.beans.Generi;
 import com.example.cfs2.servlet.beans.Libri;
 import com.example.cfs2.servlet.beans.Manga;
+import com.example.cfs2.servlet.beans.Mangaka;
 import com.example.cfs2.servlet.beans.Scrittori;
 import com.example.cfs2.servlet.beans.SerieTv;
 import com.example.cfs2.servlet.beans.Utenti;
@@ -79,13 +82,16 @@ public class DaoConnection {
 		List<Libri> libri = new ArrayList<>();
 		try (Connection conn = ds.getConnection()) {
 			String query = """
-					SELECT titolo, url FROM libri """;
+					SELECT l.titolo, l.url, s.nome, s.cognome, g.nome FROM libri l JOIN scrittori s ON l.libri_id=s.libri_id
+					JOIN generi g ON g.generi_id=l.generi_id""";
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
 			while (rs.next()) {
 				String titolo = rs.getString(1);
 				String url = rs.getString(2);
-				Libri libro = new Libri(titolo, url);
+				Scrittori scrittore = new Scrittori(rs.getString(3), rs.getString(4));
+				Generi genere = new Generi(rs.getString(5));
+				Libri libro = new Libri(titolo, url, scrittore, genere);
 				libri.add(libro);
 			}
 
@@ -100,13 +106,16 @@ public class DaoConnection {
 		List<Fumetti> fumetti = new ArrayList<>();
 		try (Connection conn = ds.getConnection()) {
 			String query = """
-					SELECT titolo, url FROM fumetti """;
+					SELECT f.titolo, f.url, d.nome, d.cognome, g.nome FROM fumetti f JOIN disegnatori d ON f.fumetti_id=d.fumetti_id
+					JOIN generi g ON g.generi_id=f.generi_id""";
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
 			while (rs.next()) {
 				String titolo = rs.getString(1);
 				String url = rs.getString(2);
-				Fumetti fumetto = new Fumetti(titolo, url);
+				Disegnatori disegnatore = new Disegnatori(rs.getString(3), rs.getString(4));
+				Generi genere = new Generi(rs.getString(5));
+				Fumetti fumetto = new Fumetti(titolo, url, disegnatore, genere);
 				fumetti.add(fumetto);
 			}
 
@@ -121,13 +130,17 @@ public class DaoConnection {
 		List<Manga> mangaList = new ArrayList<>();
 		try (Connection conn = ds.getConnection()) {
 			String query = """
-					SELECT titolo, url FROM manga """;
+					SELECT m.titolo, m.url, mk.nome, mk.cognome, g.nome
+						FROM manga m JOIN mangaka mk ON m.manga_id=mk.manga_id
+						JOIN generi g ON g.generi_id=m.generi_id """;
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
 			while (rs.next()) {
 				String titolo = rs.getString(1);
 				String url = rs.getString(2);
-				Manga manga = new Manga(titolo, url);
+				Mangaka mangaka = new Mangaka(rs.getString(3), rs.getString(4));
+				Generi genere = new Generi(rs.getString(5));
+				Manga manga = new Manga(titolo, url, mangaka, genere);
 				mangaList.add(manga);
 			}
 
@@ -142,13 +155,14 @@ public class DaoConnection {
 		List<SerieTv> serieTvList = new ArrayList<>();
 		try (Connection conn = ds.getConnection()) {
 			String query = """
-					SELECT titolo, url FROM serietv """;
+					SELECT s.titolo, s.url, g.nome FROM serietv s JOIN generi g ON s.generi_id = g.generi_id """;
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
 			while (rs.next()) {
 				String titolo = rs.getString(1);
 				String url = rs.getString(2);
-				SerieTv serieTv = new SerieTv(titolo, url);
+				Generi genere = new Generi(rs.getString(3));
+				SerieTv serieTv = new SerieTv(titolo, url, genere);
 				serieTvList.add(serieTv);
 			}
 
@@ -157,7 +171,7 @@ public class DaoConnection {
 		}
 		return serieTvList;
 	}
-	
+
 	public List<Scrittori> retrieveScrittori() {
 
 		List<Scrittori> scrittori = new ArrayList<>();

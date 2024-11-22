@@ -102,6 +102,8 @@
 												</a>
 											</div>
 											<p class="card-text small text-success">${categoria}</p>
+											<p class="card-text small text-success">${manga.mangaka}</p>
+											<p class="card-text small text-success">${manga.genere}</p>
 											<div class="star-rating d-flex gap-1">
 												<i class="fas fa-star p-2 rounded-circle text-warning"></i>
 												<i class="fas fa-star p-2 rounded-circle text-warning"></i>
@@ -142,6 +144,8 @@
 											</div>
 
 											<p class="card-text small text-success">${categoria}</p>
+											<p class="card-text small text-success">${libro.scrittore}</p>
+											<p class="card-text small text-success">${libro.genere}</p>
 
 											<div class="star-rating d-flex gap-1">
 												<i class="fas fa-star p-2 rounded-circle text-warning"></i>
@@ -253,7 +257,7 @@
 												</a>
 											</div>
 											<p class="card-text small text-success">${categoria}</p>
-
+											<p class="card-text small text-success">${serieTv.genere}</p>
 											<div class="star-rating d-flex gap-1">
 												<i class="fas fa-star p-2 rounded-circle text-warning"></i>
 												<i class="fas fa-star p-2 rounded-circle text-warning"></i>
@@ -292,6 +296,8 @@
 												</a>
 											</div>
 											<p class="card-text small text-success">${categoria}</p>
+											<p class="card-text small text-success">${fumetto.disegnatore}</p>
+											<p class="card-text small text-success">${fumetto.genere}</p>
 											<div class="star-rating d-flex gap-1">
 												<i class="fas fa-star p-2 rounded-circle text-warning"></i>
 												<i class="fas fa-star p-2 rounded-circle text-warning"></i>
