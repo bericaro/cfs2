@@ -44,8 +44,6 @@ public class HomePage extends HttpServlet {
 		String action = request.getParameter("action");
 		DaoConnection categorie = new DaoConnection();
 		categorie.setDs(ds);
-		DaoConnection autori = new DaoConnection();
-		autori.setDs(ds);
 		List<Libri> libriList = new ArrayList<>();
 		List<Manga> mangaList = new ArrayList<>();
 		List<SerieTv> serieTvList = new ArrayList<>();
@@ -66,7 +64,6 @@ public class HomePage extends HttpServlet {
 			response.setCharacterEncoding("utf-8");
 			String libri = "Libri";
 			libriList = categorie.retrieveLibri();
-			scrittori = autori.retrieveScrittori();
 			session.setAttribute("categoria", libri);
 			session.setAttribute("libri", libriList);
 			session.setAttribute("scrittori", scrittori);
