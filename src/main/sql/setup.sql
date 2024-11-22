@@ -1,14 +1,14 @@
 use storyflow;
 
 drop table if exists utente;
-drop table if exists libri;
-drop table if exists generi;
-drop table if exists serietv;
-drop table if exists manga;
-drop table if exists fumetti;
 drop table if exists scrittori;
+drop table if exists serietv;
+drop table if exists libri;
 drop table if exists disegnatori;
+drop table if exists fumetti;
 drop table if exists mangaka;
+drop table if exists manga;
+drop table if exists generi;
 
 
 
@@ -180,7 +180,6 @@ insert into manga (titolo, generi_id, url) values
     ('Buonanotte, Punpun', 2, 'https://m.media-amazon.com/images/I/41jMFv+gsDL._AC_UF1000,1000_QL80_.jpg');
     
 commit;
-alter table manga 
     
     -- TABELLA DISEGNATORI
     
