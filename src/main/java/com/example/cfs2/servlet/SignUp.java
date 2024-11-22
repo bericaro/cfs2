@@ -49,7 +49,8 @@ public class SignUp extends HttpServlet {
 		String day = request.getParameter("day");
 		String month = request.getParameter("month");
 		String year = request.getParameter("year");
-		Date birth = new Date(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day));
+//		LocalDate birthLd = LocalDate.of(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day));
+//		Date birth = Date.valueOf(birthLd);
 		log.debug("Name: {}, surname: {}, email: {}, password: {} , day: {}, month: {}, year: {}", firstName, surname,
 				email, password, day, month, year);
 		if (firstName == null || email == null || password == null) {
@@ -68,7 +69,7 @@ public class SignUp extends HttpServlet {
 			Utenti user = new Utenti();
 			DaoConnection retrieveUser = new DaoConnection();
 			retrieveUser.setDs(ds);
-			user = retrieveUser.signUp(firstName, surname, email, password, birth);
+			user = retrieveUser.signUp(firstName, surname, email, password);
 //			user.setEmail(email);
 //			user.setPassword(password);
 //			user.setName(firstName);

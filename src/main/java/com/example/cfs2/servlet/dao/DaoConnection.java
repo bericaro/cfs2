@@ -35,23 +35,22 @@ public class DaoConnection {
 		this.ds = ds;
 	}
 
-	public Utenti signUp(String nome, String cognome, String email, String password, Date birth) {
+	public Utenti signUp(String nome, String cognome, String email, String password) {
 		Utenti user = new Utenti();
 		user.setEmail(email);
 		user.setPassword(password);
 		user.setName(nome);
 		user.setSurname(cognome);
-		user.setBirth(birth);
 		try (Connection conn = ds.getConnection()) {
 
 			String query = """
-					INSERT INTO utente (nome,cognome,email,password,birth) VALUES(?,?,?,?,?)""";
+					INSERT INTO utente (nome,cognome,email,password) VALUES(?,?,?,?)""";
 			try (PreparedStatement stmt = conn.prepareStatement(query)) {
 				stmt.setString(1, user.getName().toString());
 				stmt.setString(2, user.getSurname().toString());
 				stmt.setString(3, user.getEmail().toString());
 				stmt.setString(4, user.getPassword().toString());
-				stmt.setDate(5, user.getBirth());
+
 				int rs = stmt.executeUpdate();
 			} catch (Exception e) {
 
@@ -63,6 +62,7 @@ public class DaoConnection {
 	}
 
 	public boolean logInUser(Utenti user) {
+		boolean isUser = false;
 		try (Connection conn = ds.getConnection()) {
 			String query = """
 					SELECT email, password FROM utente WHERE email = ? AND  password =?""";
@@ -70,21 +70,26 @@ public class DaoConnection {
 			stmt.setString(1, user.getEmail());
 			stmt.setString(2, user.getPassword());
 			try (ResultSet rs = stmt.executeQuery();) {
-				return rs.next();
+				if (!rs.next()) {
+					isUser = false;
+				} else {
+					isUser = true;
+				}
 			}
 		} catch (SQLException ex) {
 			throw new IllegalStateException(ex);
 		}
+		return isUser;
 	}
-	
 
 	public List<Libri> retrieveLibri() {
 
 		List<Libri> libri = new ArrayList<>();
 		try (Connection conn = ds.getConnection()) {
 			String query = """
-					SELECT l.titolo, l.url, s.nome, s.cognome, g.nome FROM libri l JOIN scrittori s ON l.libri_id=s.libri_id
-					JOIN generi g ON g.generi_id=l.generi_id""";
+										SELECT l.titolo, l.url, s.nome, s.cognome, g.nome
+					FROM libri l JOIN scrittori s ON l.scrittori_id = s.scrittori_id
+					JOIN generi g ON l.generi_id = g.generi_id""";
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
 			while (rs.next()) {

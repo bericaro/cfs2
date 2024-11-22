@@ -21,6 +21,14 @@ public class Utenti {
 		this.email = email;
 		this.password = password;
 	}
+	
+	public Utenti(String name, String surname, String email, String password) {
+		this.email = email;
+		this.password = password;
+		this.name = name;
+		this.surname=surname;
+	}
+	
 	public String getEmail() {
 	 return email;
 	}
